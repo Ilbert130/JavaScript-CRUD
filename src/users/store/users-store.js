@@ -1,3 +1,4 @@
+import { loadUsersByPage } from "../use-cases/load-users-by-page";
 
 
 const state = {
@@ -6,7 +7,7 @@ const state = {
 }
 
 const loadNextPage = async() => {
-    throw new Error('No implementado');
+    await loadUsersByPage(state.currentPage + 1);
 }
 
 const loadPreviousPage = async() => {
@@ -27,6 +28,7 @@ export default {
     onUserChanged,
     reloadPage,
 
+    //this is another way to access to the property from an external file
     getUser: () => [...state.users],
     getCurrentPage: () => state.currentPage
 
