@@ -60,20 +60,23 @@ export const renderModal = (element, callback) => {
         
         const formData = new FormData(form);
         const userLike = {...loadedUser};
+        let checkbox = form.querySelector('is-active')?.value;
+        // $("#myForm").find("input[type=checkbox]");
         
         for(const [key, value] of formData ){
             if(key === 'balance'){
                 userLike[key] = +value;
-                continue;
+                // continue;
             }
 
-            if(key === 'isActive'){
-                userLike[key] = (value === 'on') ? true: false;
-                continue;
-            }
+            // if(checkbox === 'isActive'){
+            //     userLike[key] = (value === 'on') ? true: false;
+            //     // continue;
+            // }
 
             userLike[key] = value;
         }
+        userLike.isActive = (checkbox === 'isActive') ? true: false;
         await callback(userLike);
 
         hideModal();
